@@ -1,0 +1,37 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /jpa
+    encoding:
+      charset: UTF-8
+      enabled: true
+
+
+# 数据库连接配置及#JPA配置
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&allowMutiQueries=true
+    hikari:
+      username: root
+      password: root
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 180000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      validation-timeout: 18000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+logging:
+  level:
+    org.type.hibernate.descriptor.sql.BaseBinder: trace
